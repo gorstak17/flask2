@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if 'username' in session %}
+    <a href="/logout">Logout</a>
+    {% else %}
+    <a href="/register">Register</a>
+        <a href="/login">Login</a>
+    {% endif %}
+    <table>
+        <th>
+            <tr>
+                <td>Username</td>
+                <td>email</td>
+                <td>password</td>
+                <td>confirm password</td>
+                <td>godina studija</td>
+                <td>jmbg</td>
+            </tr>
+        </th>
+        <tbody>
+            { for i in korisnici%}
+            <tr>
+                <td> {{i[1]}}</td>
+                <td> {{i[2]}}</td>
+                <td> {{i[3]}}</td>
+                <td> {{i[4]}}</td>
+                <td> {{i[5]}}</td>
+                <td> {{i[6]}}</td>
+                { if 'username' in session %}
+                <td><a href="/update/{{i[1]}}">Update</a></td>
+                <td><a href="/delete/{{i[1]}}">Delete</a></td>
+                {% endif %}
+
+            </tr>
+            {%end for%}
+        </tbody>
+    </table>
+</body>
+</html>
